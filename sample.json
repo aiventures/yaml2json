@@ -1,0 +1,19 @@
+{
+    "foods": [
+        "Apple",
+        "Orange",
+        "Strawberry",
+        "Mango"
+    ],
+    "languages": {
+        "python": "Medium",
+        "java": "Elite",
+        "pascal": "Lame"
+    },
+    "skill": "Experienced",
+    "c_new_lines_as_space": "This is a comment with  new lines as spaces\n",
+    "name": "John Doe",
+    "job": "Developer",
+    "c_new_lines_as_cr": "This is a comment with \ncarriage return",
+    "employed": true
+}
