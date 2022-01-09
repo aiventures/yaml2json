@@ -114,7 +114,7 @@ public final class Yaml2JsonHelper {
           logger.debug("JSON Object {} \n", jsonObject);
           return jsonObject;                    
         } catch (ScannerException e) {
-          logger.error("Error mapping yml to map {}",e);
+          logger.error("Error mapping yml to map {}",e.getMessage());
           return null;
         } 
     } 

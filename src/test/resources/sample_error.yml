@@ -1,0 +1,22 @@
+---
+# A sample yaml
+name: John Doe
+job: Developer
+skill: Experienced
+employed: True
+foods:
+  - Apple
+this_is_an_erroneous_line
+  - Orange
+  - Strawberry
+  - Mango
+languages:
+  java: Elite
+  python: Medium
+  pascal: Lame
+c_new_lines_as_space: >
+  This is a comment with 
+  new lines as spaces
+c_new_lines_as_cr: |
+  This is a comment with 
+  carriage return

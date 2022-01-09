@@ -7,7 +7,8 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>5.6.0</junit.version>
+    <junit.version>5.7.0-M1</junit.version>
+    <junit-platform.version>1.8.1</junit-platform.version>
     <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <checkstyle.version>8.29</checkstyle.version>
@@ -21,23 +22,38 @@
     <jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
     <jacoco.unit-tests.limit.class-complexity>20</jacoco.unit-tests.limit.class-complexity>
     <jacoco.unit-tests.limit.method-complexity>555</jacoco.unit-tests.limit.method-complexity>
-    <jackson.version>2.13.0</jackson.version>
-    <log4j.version>2.17.0</log4j.version>
-    <skipTests>true</skipTests>
+    <jackson.version>2.13.1</jackson.version>
+    <log4j.version>2.17.1</log4j.version>
+    <slf4j.version>1.7.32</slf4j.version>
+    <skipTests>false</skipTests>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+
+    <maven.compiler.parameters>true</maven.compiler.parameters>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+
   </properties>
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+    <!-- Provides everything you need to write JUnit 5 Jupiter tests. -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
+      <artifactId>junit-jupiter</artifactId>
       <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>    
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite-api</artifactId>
+      <version>${junit-platform.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite-engine</artifactId>
+      <version>${junit-platform.version}</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>    
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -65,10 +81,21 @@
       <artifactId>log4j-core</artifactId>
       <version>${log4j.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <scope>test</scope>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
   </dependencies>
   <build>
+    <!-- TMP -->
     <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -89,6 +116,13 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+        <version>${maven-surefire-plugin.version}</version>
+        <dependencies></dependencies>            
+      </plugin>      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -121,11 +155,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -215,7 +244,7 @@
         </property>
       </activation>
       <build>
-        <plugins>
+        <plugins>                    
           <plugin>
             <groupId>org.eluder.coveralls</groupId>
             <artifactId>coveralls-maven-plugin</artifactId>
