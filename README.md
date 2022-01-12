@@ -1,6 +1,6 @@
 # Yaml2JsonTransformer
 * Transforms a given file of type YAML into json representation (using Jackson and snakeyaml)
-<Description will follow>
+* Credit of YAML conversion routine was found here: https://stackoverflow.com/questions/23744216/how-do-i-convert-from-yaml-to-json-in-java/23774617
 
 # Usage 
 * ``java -jar yaml2json.jar`` from a directory with an existing yaml file ``sample.yml``
